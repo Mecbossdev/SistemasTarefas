@@ -21,7 +21,16 @@ namespace SistemasTarefas.Repositorios
 
         public async Task<Usuarios> BuscarPorId(int id)
         {
-            return await _context.Usuarios.FirstOrDefaultAsync(h => h.Id == id);
+            Usuarios? valor = await _context.Usuarios.FirstOrDefaultAsync(h => h.Id == id);
+
+            if (valor == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            return valor;
+
+            
         }
 
         public async Task<Usuarios> Cadastrar(Usuarios usuario)
@@ -37,7 +46,7 @@ namespace SistemasTarefas.Repositorios
         {
             Usuarios usuarioId = await BuscarPorId(id);
 
-            if(usuarioId == null)
+            if (usuarioId == null)
             {
                 throw new NotImplementedException();
             }

@@ -1,4 +1,6 @@
-﻿using SistemasTarefas.Repositorios;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemasTarefas.Data;
+using SistemasTarefas.Repositorios;
 using SistemasTarefas.Repositorios.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUsuarioRepositorios, UsuarioRepositorios>();
+
+builder.Services.AddDbContext<UsuariosDbContext>(options =>
+    options.UseNpgsql("Host=localhost;Username=postgres;Password=12345;Database=eecomerce"));
 
 var app = builder.Build();
 
