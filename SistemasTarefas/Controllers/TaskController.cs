@@ -39,7 +39,7 @@ namespace SistemasTarefas.Controllers
         public async Task<ActionResult<Tasks>> Cadastrar([FromBody] Tasks task)
         {
             Tasks model = await _repo.Cadastrar(task);
-            return model;
+            return Ok(model);
 
         }
 

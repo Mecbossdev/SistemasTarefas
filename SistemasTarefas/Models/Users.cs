@@ -11,7 +11,7 @@ namespace SistemasTarefas.Models
 
 		public int NumberPhone { get; set; }
 
-		public List<Tasks>? Tarefas { get; set; }
+		public List<Tasks>? Tasks { get; set; }
 	}
 }
 

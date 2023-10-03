@@ -54,7 +54,7 @@ namespace SistemasTarefas.Repositorios
             usuarioId.Name = user.Name;
             usuarioId.Email = user.Email;
             usuarioId.NumberPhone = user.NumberPhone;
-            usuarioId.Tarefas = user.Tarefas;
+            usuarioId.Tasks = user.Tasks;
 
             _context.Users.Update(usuarioId);
             await _context.SaveChangesAsync();

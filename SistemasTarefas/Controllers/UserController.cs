@@ -39,7 +39,7 @@ namespace SistemasTarefas.Controllers
         public async Task<ActionResult<Users>> Cadastrar([FromBody] Users usuario)
         {
             Users model = await _repo.Cadastrar(usuario);
-            return model;
+            return Ok(model);
 
         }
 

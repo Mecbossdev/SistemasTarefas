@@ -9,9 +9,9 @@ namespace SistemasTarefas.Repositorios.Interfaces
 
 		Task<Users> BuscarPorId(int id);
 
-		Task<Users> Cadastrar(Users usuario);
+		Task<Users> Cadastrar(Users user);
 
-		Task<Users> Atualizar(Users usuario, int id);
+		Task<Users> Atualizar(Users user, int id);
 
 		Task<bool> Apagar(int id);
     } 
