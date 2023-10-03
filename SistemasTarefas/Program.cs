@@ -5,6 +5,7 @@ using SistemasTarefas.Repositorios.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -12,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUsuarioRepositorios, UsuarioRepositorios>();
+builder.Services.AddScoped<ITasksRepositorios, TasksRepositorios>();
 
 builder.Services.AddDbContext<UsuariosDbContext>(options =>
     options.UseNpgsql("Host=localhost;Username=postgres;Password=12345;Database=eecomerce"));
@@ -24,6 +26,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(c =>
+{
+    c.AllowAnyHeader();
+    c.AllowAnyMethod();
+    c.AllowAnyOrigin();
+});
 
 app.UseHttpsRedirection();
 

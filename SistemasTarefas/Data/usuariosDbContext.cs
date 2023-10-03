@@ -7,9 +7,9 @@ namespace SistemasTarefas.Data
 {
 	public class UsuariosDbContext : DbContext
 	{
-		public DbSet<Usuarios> Usuarios { get; set; }
+		public DbSet<Users> Users { get; set; }
 
-		public DbSet<Tarefas> Tarefas { get; set; }
+		public DbSet<Tasks> Tasks { get; set; }
 
 		public UsuariosDbContext(DbContextOptions<UsuariosDbContext> options) : base(options)
 		{
@@ -17,11 +17,10 @@ namespace SistemasTarefas.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-			modelBuilder.ApplyConfiguration(new UsuarioMap());
-			modelBuilder.ApplyConfiguration(new TarefaMap());
-			modelBuilder.Entity<UsuariosTarefas>(entity =>
-			 entity.HasKey(e => new { e.UsuariosId, e.TarefasId }));
-            base.OnModelCreating(modelBuilder);
+			modelBuilder.ApplyConfiguration(new UsersMap());
+			modelBuilder.ApplyConfiguration(new TasksMap());
+
+			base.OnModelCreating(modelBuilder);
         }
     }
 }

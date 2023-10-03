@@ -5,13 +5,13 @@ namespace SistemasTarefas.Repositorios.Interfaces
 {
 	public interface IUsuarioRepositorios
 	{
-		Task<List<Usuarios>> BuscarTodosUsuarios();
+		Task<List<Users>> BuscarTodosUsuarios();
 
-		Task<Usuarios> BuscarPorId(int id);
+		Task<Users> BuscarPorId(int id);
 
-		Task<Usuarios> Cadastrar(Usuarios usuario);
+		Task<Users> Cadastrar(Users usuario);
 
-		Task<Usuarios> Atualizar(Usuarios usuario, int id);
+		Task<Users> Atualizar(Users usuario, int id);
 
 		Task<bool> Apagar(int id);
     } 

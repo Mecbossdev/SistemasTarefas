@@ -14,14 +14,14 @@ namespace SistemasTarefas.Repositorios
             _context = context;
 		}
 
-        public async Task<List<Usuarios>> BuscarTodosUsuarios()
+        public async Task<List<Users>> BuscarTodosUsuarios()
         {
-            return await _context.Usuarios.ToListAsync();
+            return await _context.Users.ToListAsync();
         }
 
-        public async Task<Usuarios> BuscarPorId(int id)
+        public async Task<Users> BuscarPorId(int id)
         {
-            Usuarios? valor = await _context.Usuarios.FirstOrDefaultAsync(h => h.Id == id);
+            Users? valor = await _context.Users.FirstOrDefaultAsync(h => h.Id == id);
 
             if (valor == null)
             {
@@ -33,30 +33,30 @@ namespace SistemasTarefas.Repositorios
             
         }
 
-        public async Task<Usuarios> Cadastrar(Usuarios usuario)
+        public async Task<Users> Cadastrar(Users user)
         {
-            await _context.Usuarios.AddAsync(usuario);
+            await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
 
-            return usuario;
+            return user;
 
         }
 
-        public async Task<Usuarios> Atualizar(Usuarios usuario, int id)
+        public async Task<Users> Atualizar(Users user, int id)
         {
-            Usuarios usuarioId = await BuscarPorId(id);
+            Users usuarioId = await BuscarPorId(id);
 
             if (usuarioId == null)
             {
                 throw new NotImplementedException();
             }
 
-            usuarioId.Name = usuario.Name;
-            usuarioId.Email = usuario.Email;
-            usuarioId.NumberPhone = usuario.NumberPhone;
-            usuarioId.Tarefas = usuario.Tarefas;
+            usuarioId.Name = user.Name;
+            usuarioId.Email = user.Email;
+            usuarioId.NumberPhone = user.NumberPhone;
+            usuarioId.Tarefas = user.Tarefas;
 
-            _context.Usuarios.Update(usuarioId);
+            _context.Users.Update(usuarioId);
             await _context.SaveChangesAsync();
 
             return usuarioId;
@@ -64,14 +64,14 @@ namespace SistemasTarefas.Repositorios
 
         public async Task<bool> Apagar(int id)
         {
-            Usuarios usuarioId = await BuscarPorId(id);
+            Users usuarioId = await BuscarPorId(id);
 
             if (usuarioId == null)
             {
                 throw new NotImplementedException();
             }
 
-            _context.Remove(id);
+            _context.Users.Remove(usuarioId);
             await _context.SaveChangesAsync();
             return true;
         }

@@ -10,51 +10,51 @@ namespace SistemasTarefas.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : Controller
+    public class UserController : Controller
     {
         private readonly IUsuarioRepositorios _repo;
-        public UsuarioController(IUsuarioRepositorios repo)
+        public UserController(IUsuarioRepositorios repo)
         {
             _repo = repo;
         }
 
         [HttpGet]
 
-        public async Task<ActionResult<List<Usuarios>>> BuscarTodos()
+        public async Task<ActionResult<List<Users>>> BuscarTodos()
         {
-            List<Usuarios> model = await _repo.BuscarTodosUsuarios();
+            List<Users> model = await _repo.BuscarTodosUsuarios();
             return Ok(model);
         }
 
         [HttpGet("{id}")]
 
-        public async Task<ActionResult<Usuarios>> BuscarPorId(int id)
+        public async Task<ActionResult<Users>> BuscarPorId(int id)
         {
-            Usuarios model = await _repo.BuscarPorId(id);
+            Users model = await _repo.BuscarPorId(id);
             return Ok(model);
         }
 
         [HttpPost]
 
-        public async Task<ActionResult<Usuarios>> Cadastrar([FromBody] Usuarios usuario)
+        public async Task<ActionResult<Users>> Cadastrar([FromBody] Users usuario)
         {
-            Usuarios model = await _repo.Cadastrar(usuario);
+            Users model = await _repo.Cadastrar(usuario);
             return model;
 
         }
 
         [HttpPut("{id}")]
 
-        public async Task<ActionResult<Usuarios>> Atualizar([FromBody] Usuarios usuario, int id)
+        public async Task<ActionResult<Users>> Atualizar([FromBody] Users usuario, int id)
         {
             usuario.Id = id;
-            Usuarios model = await _repo.Atualizar(usuario, id);
+            Users model = await _repo.Atualizar(usuario, id);
             return Ok(model);
         }
 
         [HttpDelete("{id}")]
 
-        public async Task<ActionResult<Usuarios>> Delete(int id)
+        public async Task<ActionResult<Users>> Delete(int id)
         {
             bool model = await _repo.Apagar(id);
             return Ok(model);

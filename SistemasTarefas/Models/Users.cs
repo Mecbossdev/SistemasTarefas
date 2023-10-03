@@ -1,7 +1,7 @@
 ﻿using System;
 namespace SistemasTarefas.Models
 {
-	public class Usuarios
+	public class Users
 	{
 		public int Id { get; set; }
 
@@ -11,7 +11,7 @@ namespace SistemasTarefas.Models
 
 		public int NumberPhone { get; set; }
 
-		public List<Tarefas>? Tarefas { get; set; }
+		public List<Tasks>? Tarefas { get; set; }
 	}
 }
 
