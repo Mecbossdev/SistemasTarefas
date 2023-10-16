@@ -52,9 +52,7 @@ namespace SistemasTarefas.Repositorios
             }
 
             usuarioId.Name = user.Name;
-            usuarioId.Email = user.Email;
-            usuarioId.NumberPhone = user.NumberPhone;
-            usuarioId.Tasks = user.Tasks;
+            usuarioId.Senha = user.Senha;
 
             _context.Users.Update(usuarioId);
             await _context.SaveChangesAsync();
