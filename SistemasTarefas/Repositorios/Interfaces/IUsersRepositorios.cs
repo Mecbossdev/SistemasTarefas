@@ -3,7 +3,7 @@ using SistemasTarefas.Models;
 
 namespace SistemasTarefas.Repositorios.Interfaces
 {
-	public interface IUsuarioRepositorios
+	public interface IUsersRepositorios
 	{
 		Task<List<Users>> BuscarTodosUsuarios();
 

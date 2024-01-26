@@ -6,10 +6,10 @@ using SistemasTarefas.Repositorios.Interfaces;
 
 namespace SistemasTarefas.Repositorios
 {
-	public class UsuarioRepositorios : IUsuarioRepositorios
+	public class UsersRepositorios : IUsersRepositorios
 	{
         private readonly UsuariosDbContext _context;
-        public UsuarioRepositorios(UsuariosDbContext context)
+        public UsersRepositorios(UsuariosDbContext context)
 		{
             _context = context;
 		}
@@ -51,8 +51,9 @@ namespace SistemasTarefas.Repositorios
                 throw new NotImplementedException();
             }
 
-            usuarioId.Name = user.Name;
-            usuarioId.Senha = user.Senha;
+            usuarioId.Email = user.Email;
+            usuarioId.Password = user.Password;
+            usuarioId.Register = user.Register;
 
             _context.Users.Update(usuarioId);
             await _context.SaveChangesAsync();

@@ -11,20 +11,20 @@ using SistemasTarefas.Data;
 namespace SistemasTarefas.Migrations
 {
     [DbContext(typeof(UsuariosDbContext))]
-    [Migration("20231014232157_finally")]
-    partial class @finally
+    [Migration("20240122134612_InitMigration")]
+    partial class InitMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "8.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("SistemasTarefas.Models.Tasks", b =>
+            modelBuilder.Entity("SistemasTarefas.Models.Register", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,7 +32,7 @@ namespace SistemasTarefas.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Email")
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
 
@@ -41,17 +41,19 @@ namespace SistemasTarefas.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("UsersId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("UsersId")
+                        .IsUnique();
 
-                    b.ToTable("Tasks");
+                    b.ToTable("Registers");
                 });
 
             modelBuilder.Entity("SistemasTarefas.Models.Users", b =>
@@ -62,28 +64,34 @@ namespace SistemasTarefas.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
-                    b.Property<int>("Senha")
-                        .HasColumnType("integer");
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("SistemasTarefas.Models.Tasks", b =>
+            modelBuilder.Entity("SistemasTarefas.Models.Register", b =>
                 {
                     b.HasOne("SistemasTarefas.Models.Users", "User")
-                        .WithMany()
-                        .HasForeignKey("UsersId")
+                        .WithOne("Register")
+                        .HasForeignKey("SistemasTarefas.Models.Register", "UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SistemasTarefas.Models.Users", b =>
+                {
+                    b.Navigation("Register");
                 });
 #pragma warning restore 612, 618
         }

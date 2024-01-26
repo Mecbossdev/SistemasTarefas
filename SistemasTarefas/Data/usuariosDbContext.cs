@@ -9,7 +9,7 @@ namespace SistemasTarefas.Data
 	{
 		public DbSet<Users> Users { get; set; }
 
-		public DbSet<Tasks> Tasks { get; set; }
+		public DbSet<Register> Registers { get; set; }
 
 		public UsuariosDbContext(DbContextOptions<UsuariosDbContext> options) : base(options)
 		{
@@ -17,10 +17,10 @@ namespace SistemasTarefas.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-			modelBuilder.ApplyConfiguration(new UsersMap());
-			modelBuilder.ApplyConfiguration(new TasksMap());
+            modelBuilder.ApplyConfiguration(new UsersMap());
+            modelBuilder.ApplyConfiguration(new RegisterMap());
 
-			base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

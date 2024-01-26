@@ -10,10 +10,10 @@ namespace SistemasTarefas.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : Controller
+    public class UsersController : Controller
     {
-        private readonly IUsuarioRepositorios _repo;
-        public UserController(IUsuarioRepositorios repo)
+        private readonly IUsersRepositorios _repo;
+        public UsersController(IUsersRepositorios repo)
         {
             _repo = repo;
         }

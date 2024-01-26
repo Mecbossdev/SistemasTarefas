@@ -10,10 +10,9 @@ namespace SistemasTarefas.Data.Map
         public void Configure(EntityTypeBuilder<Users> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Name).IsRequired().HasMaxLength(255);
-            builder.Property(x => x.Senha).IsRequired();
+            builder.Property(x => x.Email).IsRequired().HasMaxLength(255);
+            builder.Property(x => x.Password).IsRequired();
 
         }
     }
 }
-

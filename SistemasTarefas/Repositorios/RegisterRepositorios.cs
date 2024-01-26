@@ -6,22 +6,22 @@ using SistemasTarefas.Repositorios.Interfaces;
 
 namespace SistemasTarefas.Repositorios
 {
-	public class TasksRepositorios : ITasksRepositorios
+	public class RegisterRepositorios : IRegisterRepositorios
 	{
         private readonly UsuariosDbContext _context;
-        public TasksRepositorios(UsuariosDbContext context)
+        public RegisterRepositorios(UsuariosDbContext context)
 		{
             _context = context;
 		}
 
-        public async Task<List<Tasks>> BuscarTodasTasks()
+        public async Task<List<Register>> BuscarTodasTasks()
         {
-            return await _context.Tasks.ToListAsync();
+            return await _context.Registers.ToListAsync();
         }
 
-        public async Task<Tasks> BuscarPorId(int id)
+        public async Task<Register> BuscarPorId(int id)
         {
-            Tasks? valor = await _context.Tasks.FirstOrDefaultAsync(h => h.Id == id);
+            Register? valor = await _context.Registers.FirstOrDefaultAsync(h => h.Id == id);
 
             if (valor == null)
             {
@@ -33,18 +33,18 @@ namespace SistemasTarefas.Repositorios
             
         }
 
-        public async Task<Tasks> Cadastrar(Tasks task)
+        public async Task<Register> Cadastrar(Register task)
         {
-            await _context.Tasks.AddAsync(task);
+            await _context.Registers.AddAsync(task);
             await _context.SaveChangesAsync();
 
             return task;
 
         }
 
-        public async Task<Tasks> Atualizar(Tasks task, int id)
+        public async Task<Register> Atualizar(Register task, int id)
         {
-            Tasks taskId= await BuscarPorId(id);
+            Register taskId= await BuscarPorId(id);
 
             if (taskId == null)
             {
@@ -52,11 +52,11 @@ namespace SistemasTarefas.Repositorios
             }
 
             taskId.Name = task.Name;
-            taskId.Description = task.Description;
-            taskId.Status = task.Status;
+            taskId.Email = task.Email;
+            taskId.Password = task.Password;
             taskId.UsersId = task.UsersId;
 
-            _context.Tasks.Update(taskId);
+            _context.Registers.Update(taskId);
             await _context.SaveChangesAsync();
 
             return taskId;
@@ -64,14 +64,14 @@ namespace SistemasTarefas.Repositorios
 
         public async Task<bool> Apagar(int id)
         {
-            Tasks taskId = await BuscarPorId(id);
+            Register taskId = await BuscarPorId(id);
 
             if (taskId == null)
             {
                 throw new NotImplementedException();
             }
 
-            _context.Tasks.Remove(taskId);
+            _context.Registers.Remove(taskId);
             await _context.SaveChangesAsync();
             return true;
         }
